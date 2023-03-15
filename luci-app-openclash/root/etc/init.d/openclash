@@ -2870,9 +2870,9 @@ stop()
    done >/dev/null 2>&1
    
    LOG_OUT "Step 4: Close The Clash Core Process..."
-   if [ "$enable" != "1" ]; then
-      kill_clash
-   fi
+   #if [ "$enable" != "1" ]; then
+   kill_clash
+   #fi
 
    LOG_OUT "Step 5: Restart Dnsmasq..."
    redirect_dns=$(uci -q get openclash.config.redirect_dns)
