@@ -9,8 +9,8 @@ PKG_VERSION:=2.11.5
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/ginuerzh/gost/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=dab48b785f4d2df6c2f5619a4b9a2ac6e8b708f667a4d89c7d08df67ad7c5ca7
+PKG_SOURCE_URL:=https://codeload.github.com/littoy/gost/tar.gz/refs/tags/2.11.5v20
+PKG_HASH:=1b4dcf071d4d70700408d2a1c4edc81fddd2af71f82b05d30709f7fb235e10c8
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILE:=LICENSE
