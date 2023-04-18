@@ -226,8 +226,7 @@ gen_service_file() {
 	if [ $1 == "ssr" ]; then
 		cat <<-EOF >$3
 			{
-			  "server": "0.0.0.0",
-			  "server_ipv6": "::",
+			  "server": ["[::0]", "0.0.0.0"],
 			  "server_port": $(uci_get_by_name $2 server_port),
 			  "mode": "tcp_and_udp",
 			  "password": "$(uci_get_by_name $2 password)",
@@ -243,8 +242,7 @@ gen_service_file() {
 	else
 		cat <<-EOF >$3
 			{
-			  "server": "0.0.0.0",
-			  "server_ipv6": "::",
+			  "server": ["[::0]", "0.0.0.0"],
 			  "server_port": $(uci_get_by_name $2 server_port),
 			  "mode": "tcp_and_udp",
 			  "password": "$(uci_get_by_name $2 password)",
@@ -976,6 +974,7 @@ reset() {
 		set shadowsocksr.@global[0].dports='2'
 		set shadowsocksr.@global[0].pdnsd_enable='1'
 		set shadowsocksr.@global[0].tunnel_forward='8.8.4.4:53'
+		set shadowsocksr.@global[0].chinadns_forward='114.114.114.114:53'
 		set shadowsocksr.@global[0].monitor_enable='1'
 		set shadowsocksr.@global[0].enable_switch='1'
 		set shadowsocksr.@global[0].switch_time='667'
