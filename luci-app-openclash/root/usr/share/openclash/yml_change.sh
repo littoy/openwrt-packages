@@ -401,12 +401,12 @@ Thread.new{
    end;
    
    #dev&tun core force fake-ip
-   if ${19} == 1 and '$1' == 'redir-host' then
-      Value['dns']['enhanced-mode']='redir-host';
-      Value['dns'].delete('fake-ip-range');
-   else
+   Value['dns']['enhanced-mode']='$1';
+   if '$1' == 'fake-ip' then
       Value['dns']['enhanced-mode']='fake-ip';
       Value['dns']['fake-ip-range']='${30}';
+   else
+      Value['dns'].delete('fake-ip-range');
    end;
 
    Value['dns']['listen']='0.0.0.0:${13}';

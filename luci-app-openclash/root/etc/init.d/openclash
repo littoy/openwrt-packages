@@ -731,7 +731,8 @@ start_run_core()
    fi
    config_reload=$(uci -q get openclash.config.config_reload)
    if [ -n "$(pidof clash)" ] && [ "$core_type" != "TUN" ] && [ "$core_type" != "Meta" ] && [ "$config_reload" != "0" ]; then
-      reload_status=$(curl -s --connect-timeout 5 -m 5 -o /dev/null -w %{http_code} -H 'Content-Type: application/json' -H "Authorization: Bearer ${da_password}" -XPUT http://"$lan_ip":"$cn_port"/configs?force=true -d "{\"path\": \"$CONFIG_FILE\"}" 2>/dev/null)
+      #reload_status=$(curl -s --connect-timeout 5 -m 5 -o /dev/null -w %{http_code} -H 'Content-Type: application/json' -H "Authorization: Bearer ${da_password}" -XPUT http://"$lan_ip":"$cn_port"/configs?force=true -d "{\"path\": \"$CONFIG_FILE\"}" 2>/dev/null)
+      LOG_OUT "ignore firewall reload, do nothing"
    fi
    if [ "$reload_status" != "204" ] || [ -z "$(pidof clash)" ] || [ "$core_type" = "TUN" ] || [ "$core_type" = "Meta" ] || [ "$config_reload" = "0" ]; then
       kill_clash
@@ -3146,9 +3147,9 @@ stop()
    done >/dev/null 2>&1
    
    LOG_OUT "Step 4: Close The Clash Core Process..."
-   if [ "$enable" != "1" ]; then
+   #if [ "$enable" != "1" ]; then
       kill_clash
-   fi
+   #fi
 
    LOG_OUT "Step 5: Restart Dnsmasq..."
    redirect_dns=$(uci -q get openclash.config.redirect_dns)
